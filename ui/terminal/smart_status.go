@@ -144,6 +144,7 @@ func (s *smartStatusOutput) StartAction(action *status.Action, counts status.Cou
 	}
 
 	progress := s.formatter.progress(counts)
+	writeProgressFile(counts)
 
 	s.lock.Lock()
 	defer s.lock.Unlock()
@@ -163,6 +164,7 @@ func (s *smartStatusOutput) FinishAction(result status.ActionResult, counts stat
 	}
 
 	progress := s.formatter.progress(counts) + str
+	writeProgressFile(counts)
 
 	output := s.formatter.result(result)
 
